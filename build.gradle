@@ -1,0 +1,59 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
+    }
+}
+
+plugins {
+  id "org.akhikhl.gretty" version "1.4.0"
+}
+
+apply plugin: 'java'
+
+group = 'com.example.myapp'
+version = '1.0-SNAPSHOT'
+
+description = "gradle-gwt-starter-proyect"
+
+sourceCompatibility = '1.8'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+apply plugin: 'war'
+apply plugin: 'gwt'
+
+gwt {
+	gwtVersion='2.8.0'
+
+	minHeapSize = "256M";
+    maxHeapSize = "512M";
+
+	modules 'com.example.myapp.WebApp'
+
+	compiler {
+		strict = true;
+		//enableClosureCompiler = true;
+		disableClassMetadata = true;
+		disableCastChecking = true;
+	}
+	
+	superDev {
+		launcherDir = new File('build/inplaceWebapp')
+	}
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.10'
+}
+
+gretty {
+	servletContainer = 'jetty9'
+	httpPort = 8081
+	fileLogEnabled = false
+}
