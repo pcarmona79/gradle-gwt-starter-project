@@ -30,7 +30,7 @@ gwt {
 	minHeapSize = "256M";
     maxHeapSize = "512M";
 
-	modules 'com.example.myapp.WebApp'
+	modules 'com.example.myapp.MyApp'
 
 	compiler {
 		strict = true;
