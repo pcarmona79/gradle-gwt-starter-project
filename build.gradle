@@ -1,14 +1,14 @@
 buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
-    }
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
+	}
 }
 
 plugins {
-  id "org.akhikhl.gretty" version "1.4.0"
+	id "org.akhikhl.gretty" version "1.4.0"
 }
 
 apply plugin: 'java'
@@ -27,16 +27,14 @@ apply plugin: 'gwt'
 gwt {
 	gwtVersion='2.8.0'
 
-	minHeapSize = "256M";
     maxHeapSize = "512M";
 
 	modules 'com.example.myapp.MyApp'
 
 	compiler {
 		strict = true;
-		//enableClosureCompiler = true;
-		disableClassMetadata = true;
-		disableCastChecking = true;
+		disableClassMetadata = false;
+		disableCastChecking = false;
 	}
 	
 	superDev {
@@ -56,4 +54,7 @@ gretty {
 	servletContainer = 'jetty9'
 	httpPort = 8081
 	fileLogEnabled = false
+	scanInterval = 2
+	managedClassReload = true
 }
+
