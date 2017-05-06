@@ -25,9 +25,9 @@ apply plugin: 'war'
 apply plugin: 'gwt'
 
 gwt {
-	gwtVersion='2.8.0'
+	gwtVersion = '2.8.0'
 
-    maxHeapSize = "512M";
+	maxHeapSize = "1024M";
 
 	modules 'com.example.myapp.MyApp'
 
@@ -54,7 +54,12 @@ gretty {
 	servletContainer = 'jetty9'
 	httpPort = 8081
 	fileLogEnabled = false
-	scanInterval = 2
-	managedClassReload = true
+	scanInterval = 5
+	managedClassReload = false
 }
 
+// execute with "-x compileGwt -x war"
+task gwtSuperDevDir(type: Copy) {
+	into 'build/inplaceWebapp'
+	with war
+}
